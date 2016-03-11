@@ -65,4 +65,23 @@ class BST {
       printBFS(q);
     }
   }
+  
+  public boolean isBST() {
+    return isBST(root);
+  }
+  
+  private boolean isBST(Node c) {
+    if (c != null) {
+      if (c.left == null && c.right == null) {
+        return true;
+      } else if (c.left == null) {
+        return isBST(c.right);
+      } else if (c.right == null) {
+        return isBST(c.left);
+      } else if (c.left.val < c.val && c.val < c.right.val) {
+        return isBST(c.left) && isBST(c.right);
+      }      
+    }
+    return false;
+  }
 }
